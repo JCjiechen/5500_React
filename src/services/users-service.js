@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "https://cs5500-01-sp22.herokuapp.com/api";
+const BASE_URL = "https://node5500.herokuapp.com/api";
 // const BASE_URL = "http://localhost:4000/api";
 
 const LOGIN_API = `${BASE_URL}/login`;
@@ -10,12 +10,12 @@ export const createUser = (user) =>
     .then(response => response.data);
 
 export const findAllUsers = () =>
-    axios.get(USERS_API)
-        .then(response => response.data);
+  axios.get(USERS_API)
+    .then(response => response.data);
 
 export const findUserById = (uid) =>
-    axios.get(`${USERS_API}/${uid}`)
-        .then(response => response.data);
+  axios.get(`${USERS_API}/${uid}`)
+    .then(response => response.data);
 
 export const deleteUser = (uid) =>
   axios.delete(`${USERS_API}/${uid}`)
