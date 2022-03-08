@@ -9,8 +9,8 @@ import Tuiter from "./components/tuiter";
 
 function App() {
   return (
-    <Tuiter/>
+    <Tuiter />
   );
 }
-
+//hi
 export default App;
