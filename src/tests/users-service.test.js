@@ -1,6 +1,7 @@
 import {
   createUser,
-  deleteUsersByUsername, findAllUsers,
+  deleteUsersByUsername,
+  findAllUsers,
   findUserById
 } from "../services/users-service";
 
@@ -65,7 +66,7 @@ describe('deleteUsersByUsername', () => {
   });
 });
 
-describe('findUserById',  () => {
+describe('findUserById', () => {
   // sample user we want to retrieve
   const adam = {
     username: 'adam_smith',
@@ -76,7 +77,7 @@ describe('findUserById',  () => {
   // setup before running test
   beforeAll(() => {
     // clean up before the test making sure the user doesn't already exist
-    return deleteUsersByUsername(adam.username)
+    return deleteUsersByUsername(adam.username);
   });
 
   // clean up after ourselves
@@ -105,7 +106,7 @@ describe('findUserById',  () => {
 });
 
 
-describe('findAllUsers',  () => {
+describe('findAllUsers', () => {
 
   // sample users we'll insert to then retrieve
   const usernames = [
