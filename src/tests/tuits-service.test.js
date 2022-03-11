@@ -165,18 +165,6 @@ describe('can retrieve all tuits with REST API', () => {
     "TuitThree"
   ];
 
-  // // setup test before running test
-  // beforeAll(() => {
-  //   // remove any/all users to make sure we create it in the test
-  //   return deleteUsersByUsername(testUser.username);
-  // })
-
-  // // clean up after test runs
-  // afterAll(() => {
-  //   // remove any data we created
-  //   return deleteUsersByUsername(testUser.username);
-  // })
-
   test("can retrieve all tuits with REST API", async () => {
     // retrieve all the tuits
     const tuits = await findAllTuits();
@@ -184,16 +172,15 @@ describe('can retrieve all tuits with REST API', () => {
     // there should be a minimum number of tuits
     expect(tuits.length).toBeGreaterThanOrEqual(allTuits.length);
 
-
-
     const tuitsInsert = tuits.filter((tuit) =>
       allTuits.includes(tuit.tuit)
     );
 
-    //get all ids of the sample tuits for deleting after test
-    const ids = tuitsInsert.map((item) => item._id);
+    // let's check each tuit we inserted
+    const tuitsWeInserted = tuits.filter(
+      tuit => allTuits.indexOf(tuit.tuit) >= 0);
 
-    // get the item matching those in the sample list
+    // compare the actual tuits in database with the ones we sent
     tuitsInsert.forEach((tuit) => {
       const sample = allTuits.find(
         (sampleTuit) => sampleTuit === tuit.tuit
@@ -201,7 +188,10 @@ describe('can retrieve all tuits with REST API', () => {
       expect(sample).toEqual(tuit.tuit);
     });
 
-    // delete all test sample after finishing the test
+    //get all ids of the mock tuits
+    const ids = tuitsInsert.map((item) => item._id);
+
+    // delete all mock tuits 
     ids.forEach(async (id) => {
       const status = await deleteTuit(id);
       expect(status.deletedCount).toBeGreaterThanOrEqual(1);
