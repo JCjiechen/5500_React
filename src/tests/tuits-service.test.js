@@ -171,7 +171,6 @@ afterAll(() => {
 })
 
 describe('can retrieve all tuits with REST API', () => {
-  // sample tuits we'll insert to then retrieve
   let testTuits = [
     "All", "Test", "Tuits"
   ];
@@ -205,8 +204,13 @@ describe('can retrieve all tuits with REST API', () => {
       tuit => testTuits.indexOf(tuit.tuit) >= 0);
 
     // compare the actual users in database with the ones we sent
-    testTuits.forEach(tuitContent => {
-      const insertedOne = insertedTuits.find(tuit => tuit.tuit === tuitContent);
-    })
+    insertedTuits.forEach((tuit) => {
+      const sample = testTuits.find(
+        (sampleTuit) => sampleTuit === tuit.tuit
+      );
+      expect(tuit.tuit).toEqual(sample);
+    });
+
   })
 });
+
