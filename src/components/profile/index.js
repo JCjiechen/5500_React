@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import MyTuits from "./my-tuits";
-import {HashRouter, Link, Route, Routes, useNavigate, useLocation} from "react-router-dom";
+import { Link, Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import * as service from "../../services/security-service"
 import TuitsAndReplies from "./tuits-and-replies";
 import Media from "./media";
 import MyLikes from "./my-likes";
+import MyDislikes from "./my-dislikes";
 const Profile = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,9 +20,9 @@ const Profile = () => {
   }, []);
   const logout = () => {
     service.logout()
-        .then(() => navigate('/login'));
+      .then(() => navigate('/login'));
   }
-  return(
+  return (
     <div className="ttr-profile">
       <div className="border border-bottom-0">
         <h4 className="p-2 mb-0 pb-0 fw-bolder">
@@ -29,15 +30,15 @@ const Profile = () => {
           <i className="fa fa-badge-check text-primary"></i></h4>
         <span className="ps-2">67.6K Tuits</span>
         <div className="mb-5 position-relative">
-          <img className="w-100" src="../images/nasa-profile-header.jpg"/>
+          <img className="w-100" src="../images/nasa-profile-header.jpg" />
           <div className="bottom-0 left-0 position-absolute">
             <div className="position-relative">
               <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"
-                   src="../images/nasa-3.png"/>
+                src="../images/nasa-3.png" />
             </div>
           </div>
           <Link to="/profile/edit"
-                className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right">
+            className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right">
             Edit profile
           </Link>
           <button onClick={logout} className="mt-2 float-end btn btn-warning rounded-pill">
@@ -60,7 +61,7 @@ const Profile = () => {
             <a href="nasa.gov" className="text-decoration-none">nasa.gov</a>
             <i className="far fa-balloon ms-3 me-2"></i>
             Born October 1, 1958
-            <br/>
+            <br />
             <i className="far fa-calendar me-2"></i>
             Joined December 2007
           </p>
@@ -69,33 +70,39 @@ const Profile = () => {
           <ul className="mt-4 nav nav-pills nav-fill">
             <li className="nav-item">
               <Link to="/profile/mytuits"
-                    className={`nav-link ${location.pathname.indexOf('mytuits') >= 0 ? 'active':''}`}>
+                className={`nav-link ${location.pathname.indexOf('mytuits') >= 0 ? 'active' : ''}`}>
                 Tuits</Link>
             </li>
             <li className="nav-item">
               <Link to="/profile/tuits-and-replies"
-                    className={`nav-link ${location.pathname.indexOf('tuits-and-replies') >= 0 ? 'active':''}`}>
+                className={`nav-link ${location.pathname.indexOf('tuits-and-replies') >= 0 ? 'active' : ''}`}>
                 Tuits & replies</Link>
             </li>
             <li className="nav-item">
               <Link to="/profile/media"
-                    className={`nav-link ${location.pathname.indexOf('media') >= 0 ? 'active':''}`}>
+                className={`nav-link ${location.pathname.indexOf('media') >= 0 ? 'active' : ''}`}>
                 Media</Link>
             </li>
             <li className="nav-item">
               <Link to="/profile/likes"
-                    className={`nav-link ${location.pathname.indexOf('likes') >= 0 ? 'active':''}`}>
+                className={`nav-link ${location.pathname.indexOf('likes') >= 0 && location.pathname.indexOf('likes') < 10 ? 'active' : ''}`}>
                 Likes</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/profile/dislikes"
+                className={`nav-link ${location.pathname.indexOf('dislikes') >= 0 ? 'active' : ''}`}>
+                Dislikes</Link>
             </li>
           </ul>
         </div>
       </div>
-        <Routes>
-          <Route path="/mytuits" element={<MyTuits/>}/>
-          <Route path="/tuits-and-replies" element={<TuitsAndReplies/>}/>
-          <Route path="/media" element={<Media/>}/>
-          <Route path="/likes" element={<MyLikes/>}/>
-        </Routes>
+      <Routes>
+        <Route path="/mytuits" element={<MyTuits />} />
+        <Route path="/tuits-and-replies" element={<TuitsAndReplies />} />
+        <Route path="/media" element={<Media />} />
+        <Route path="/likes" element={<MyLikes />} />
+        <Route path="/dislikes" element={<MyDislikes />} />
+      </Routes>
     </div>
   );
 }

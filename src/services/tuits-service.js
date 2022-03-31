@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// const BASE_URL = "https://cs5500-01-sp22.herokuapp.com";
+//const BASE_URL = "https://node5500.herokuapp.com/";
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const TUITS_API = `${BASE_URL}/api/tuits`;
