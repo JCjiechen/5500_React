@@ -65,7 +65,7 @@ describe('deleteUsersByUsername', () => {
   });
 });
 
-describe('findUserById',  () => {
+describe('findUserById', () => {
   // sample user we want to retrieve
   const adam = {
     username: 'adam_smith',
@@ -105,7 +105,7 @@ describe('findUserById',  () => {
 });
 
 
-describe('findAllUsers',  () => {
+describe('findAllUsers', () => {
 
   // sample users we'll insert to then retrieve
   const usernames = [

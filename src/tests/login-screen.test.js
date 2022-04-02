@@ -5,22 +5,22 @@ import {
   findUserById
 } from "../services/users-service";
 import services from "./services";
-import {Login} from "../components/profile/login";
-import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
-import {HashRouter} from "react-router-dom";
+import { Login } from "../components/profile/login";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { HashRouter } from "react-router-dom";
 import Tuiter from "../components/tuiter";
 import React from "react";
 
 jest.mock("axios");
 
 const MOCKED_USERS = [
-  {username: 'ellen_ripley', password: 'lv426', email: 'repley@weyland.com'},
-  {username: 'sarah_conor', password: 'illbeback', email: 'sarah@bigjeff.com'},
+  { username: 'ellen_ripley', password: 'lv426', email: 'repley@weyland.com' },
+  { username: 'sarah_conor', password: 'illbeback', email: 'sarah@bigjeff.com' },
 ]
 
 test("mocked hello world axios works", async () => {
   axios.get.mockImplementation(() =>
-    Promise.resolve({ data: {message: 'hello world'} }));
+    Promise.resolve({ data: { message: 'hello world' } }));
   const response = await axios.get();
   expect(response.data.message).toEqual('hello world')
 });
@@ -28,7 +28,7 @@ test("mocked hello world axios works", async () => {
 describe('sss', () => {
   test("mocked hello world axios works", async () => {
     axios.get.mockImplementation(() =>
-      Promise.resolve({ data: {message: 'hello world'} }));
+      Promise.resolve({ data: { message: 'hello world' } }));
     const response = await axios.get();
     expect(response.data.message).toEqual('hello world')
   });
@@ -36,7 +36,7 @@ describe('sss', () => {
 
 test("find all users mock works", async () => {
   axios.get.mockImplementation(() =>
-    Promise.resolve({ data: {users: MOCKED_USERS} }));
+    Promise.resolve({ data: { users: MOCKED_USERS } }));
   const response = await services.findAllUsers();
   const users = response.users;
   expect(users.length).toEqual(MOCKED_USERS.length);
@@ -48,7 +48,7 @@ test("find all users mock works", async () => {
 describe('fff', () => {
   test("find all users mock works", async () => {
     axios.get.mockImplementation(() =>
-      Promise.resolve({ data: {users: MOCKED_USERS} }));
+      Promise.resolve({ data: { users: MOCKED_USERS } }));
     const response = await services.findAllUsers();
     const users = response.users;
     expect(users.length).toEqual(MOCKED_USERS.length);
@@ -61,10 +61,10 @@ describe('fff', () => {
 describe('www', () => {
   beforeEach(() => {
     axios.get.mockImplementation(() =>
-      Promise.resolve({ data: {users: MOCKED_USERS} }));
+      Promise.resolve({ data: { users: MOCKED_USERS } }));
 
     act(() => {
-      render(<Tuiter/>)
+      render(<Tuiter />)
     });
   });
 
@@ -72,7 +72,7 @@ describe('www', () => {
   test("login renders users", async () => {
     // console.log(qwe);
     axios.get.mockImplementation(() =>
-      Promise.resolve({ data: {users: MOCKED_USERS} }));
+      Promise.resolve({ data: { users: MOCKED_USERS } }));
 
     await act(async () => {
       // get all the links
@@ -154,7 +154,7 @@ describe('createUser', () => {
           email: 'ellenripley@aliens.com'
         };
         const users = [ripley];
-        const resp = {data: users};
+        const resp = { data: users };
         resolve(resp);
       })
     })
@@ -165,7 +165,7 @@ describe('createUser', () => {
     act(() => {
       render(
         <HashRouter>
-          <Login/>
+          <Login />
         </HashRouter>
       );
     });
@@ -198,7 +198,7 @@ describe('deleteUsersByUsername', () => {
   });
 });
 
-describe('findUserById',  () => {
+describe('findUserById', () => {
 
   const adam = {
     username: 'adam_smith',
@@ -236,7 +236,7 @@ describe('findUserById',  () => {
 });
 
 
-describe('findAllUsers',  () => {
+describe('findAllUsers', () => {
 
   const usernames = [
     "larry", "curley", "moe"
