@@ -5,9 +5,6 @@
 import { act, create } from "react-test-renderer"
 import Tuits from "../components/tuits/index";
 import MyDislikes from "../components/profile/my-dislikes";
-import { userDislikesTuit } from "../services/dislikes-service";
-import { createUser, deleteUsersByUsername } from "../services/users-service";
-import { createTuit, deleteTuit } from "../services/tuits-service";
 
 const testUser = {
     username: 'admin',
